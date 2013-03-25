@@ -24,6 +24,7 @@
 
 {% set model_download = request.app.public_store.file_url(
    media.media_files['original']) %}
+{% if media.media_data.blender_thumbs %}
 {% set perspective_view = request.app.public_store.file_url(
    media.media_files['perspective']) %}
 {% set top_view = request.app.public_store.file_url(
@@ -32,11 +33,18 @@
    media.media_files['side']) %}
 {% set front_view = request.app.public_store.file_url(
    media.media_files['front']) %}
+{% endif %}
 
 <style type="text/css">
+{% if media.media_data.blender_thumbs %}
 #top_view, #side_view, #front_view, #thingy_view {
     display: none;
 }
+{% else %}
+#thingy_view {
+    display: block;
+}
+{% endif %}
 .media_image {
     cursor: inherit!important;
 }
@@ -62,7 +70,8 @@ window.show = function (view_id) {
     for (var i=0; i<ids.length; i+=1) {
         id = ids[i];
         var view = document.getElementById(id);
-        view.style.display = id===view_id ? "block" : "none";
+        if (view)
+          view.style.display = id===view_id ? "block" : "none";
     }
 };
 
@@ -80,6 +89,7 @@ window.show_things = function () {
 };
 </script>
 
+{% if media.media_data.blender_thumbs %}
 <img 
    id="perspective"
    class="media_image"
@@ -104,10 +114,13 @@ window.show_things = function () {
    src="{{ front_view }}"
    alt="{% trans media_title=media.title -%}
         Image for {{ media_title }}{% endtrans %}" />
+{% endif %}
+
 <div id="thingy_view" style="width:640px;height:640px;"></div>
 
 
 <div style="padding: 4px;">
+{% if media.media_data.blender_thumbs %}
   <a class="button_action" onclick="show('perspective');"
      title="{%- trans %}Toggle Rotate{% endtrans -%}">
     {%- trans %}Perspective{% endtrans -%}
@@ -124,6 +137,15 @@ window.show_things = function () {
      title="{%- trans %}Side{% endtrans -%}">
     {%- trans %}Side{% endtrans -%}
   </a>
+
+{% else %}
+<script>
+//since we don't have thumbnains, we'll automatically start the WebGL model viewer:
+show_things();
+show('thingy_view');
+</script>
+{% endif %}
+
 {% if media.media_data.file_type == "stl" %}
   <a id="webgl_button" class="button_action"
      onclick="show_things();"

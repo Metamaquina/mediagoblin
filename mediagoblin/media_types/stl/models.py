@@ -18,7 +18,7 @@
 from mediagoblin.db.base import Base
 
 from sqlalchemy import (
-    Column, Integer, Float, String, ForeignKey)
+    Column, Integer, Float, String, Boolean, ForeignKey)
 from sqlalchemy.orm import relationship, backref
 
 
@@ -44,7 +44,7 @@ class StlData(Base):
     depth = Column(Float)
 
     file_type = Column(String)
-
+    blender_thumbs = Column(Boolean)
 
 DATA_MODEL = StlData
 MODELS = [StlData]

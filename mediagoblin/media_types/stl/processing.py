@@ -134,28 +134,33 @@ def process_stl(proc_state):
 
         return public_path
 
-    thumb_path = snap(
-        "{basename}.thumb.jpg",
-        [0, greatest*-1.5, greatest],
-        mgg.global_config['media:thumb']['max_width'],
-        mgg.global_config['media:thumb']['max_height'],
-        project="PERSP")
+    blender_thumbs = True
+    try:
+      thumb_path = snap(
+          "{basename}.thumb.jpg",
+          [0, greatest*-1.5, greatest],
+          mgg.global_config['media:thumb']['max_width'],
+          mgg.global_config['media:thumb']['max_height'],
+          project="PERSP")
 
-    perspective_path = snap(
-        "{basename}.perspective.jpg",
-        [0, greatest*-1.5, greatest], project="PERSP")
+      perspective_path = snap(
+          "{basename}.perspective.jpg",
+          [0, greatest*-1.5, greatest], project="PERSP")
 
-    topview_path = snap(
-        "{basename}.top.jpg",
-        [model.average[0], model.average[1], greatest*2])
+      topview_path = snap(
+          "{basename}.top.jpg",
+          [model.average[0], model.average[1], greatest*2])
 
-    frontview_path = snap(
-        "{basename}.front.jpg",
-        [model.average[0], greatest*-2, model.average[2]])
+      frontview_path = snap(
+          "{basename}.front.jpg",
+          [model.average[0], greatest*-2, model.average[2]])
 
-    sideview_path = snap(
-        "{basename}.side.jpg",
-        [greatest*-2, model.average[1], model.average[2]])
+      sideview_path = snap(
+          "{basename}.side.jpg",
+          [greatest*-2, model.average[1], model.average[2]])
+    except:
+      blender_thumbs = False
+      pass
 
     ## Save the public file stuffs
     model_filepath = create_pub_filepath(
@@ -172,11 +177,12 @@ def process_stl(proc_state):
     # Insert media file information into database
     media_files_dict = entry.setdefault('media_files', {})
     media_files_dict[u'original'] = model_filepath
-    media_files_dict[u'thumb'] = thumb_path
-    media_files_dict[u'perspective'] = perspective_path
-    media_files_dict[u'top'] = topview_path
-    media_files_dict[u'side'] = sideview_path
-    media_files_dict[u'front'] = frontview_path
+    if blender_thumbs:
+      media_files_dict[u'thumb'] = thumb_path
+      media_files_dict[u'perspective'] = perspective_path
+      media_files_dict[u'top'] = topview_path
+      media_files_dict[u'side'] = sideview_path
+      media_files_dict[u'front'] = frontview_path
 
     # Put model dimensions into the database
     dimensions = {
@@ -187,5 +193,6 @@ def process_stl(proc_state):
         "height" : model.height,
         "depth" : model.depth,
         "file_type" : ext,
+        "blender_thumbs" : blender_thumbs,
         }
     entry.media_data_init(**dimensions)
