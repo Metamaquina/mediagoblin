@@ -68,7 +68,7 @@ else
 fi
 
 set -x
-export CELERY_ALWAYS_EAGER=true
+export CELERY_ALWAYS_EAGER=false
 case "$selfname" in
     lazyserver.sh)
         $starter serve "$ini_file" "$@" --reload
