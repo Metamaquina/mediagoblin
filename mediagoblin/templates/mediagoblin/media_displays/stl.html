@@ -212,6 +212,10 @@ show('thingy_view');
 
 {% endblock %}
 
+{% set seconds = media.media_data.total_duration %}
+{% set minutes = ((seconds/60)%60)|int %}
+{% set hours = (seconds/3600)|int %}
+
 {% block mediagoblin_sidebar %}
 <h3>{% trans %}File Format{% endtrans %}</h3>
 <p>{{ media.media_data.file_type }}</p>
@@ -226,5 +230,5 @@ show('thingy_view');
 <p>PLA: ~{{ media.media_data.plastic_volume*1.25|float }} g</p>
 <h3>{% trans %}Gcode statistics{% endtrans %}</h3>
 <p> {{ media.media_data.layer_count|int }} layers</p>
-<p> {{ (media.media_data.total_duration|int/60) }} minutes</p>
+<p> estimated print time:<br/> {{ hours }}h {{ minutes%60 }}min</p>
 {% endblock %}
