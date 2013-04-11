@@ -217,8 +217,11 @@ show('thingy_view');
 <p>{{ media.media_data.file_type }}</p>
 <h3>{% trans %}Object Height{% endtrans %}</h3>
 <p>~{{ media.media_data.height|int }} mm</p>
-<h3>{% trans %}Filament required{% endtrans %}</h3>
-<p>~{{ media.media_data.filament_length|int }} mm</p>
+<h3>{% trans %}Filament extruded{% endtrans %}</h3>
+<p>~{{ media.media_data.filament_length|float }} mm</p>
 <h3>{% trans %}Volume of plastic{% endtrans %}</h3>
-<p>~{{ media.media_data.plastic_volume|int }} cm3</p>
+<p>~{{ media.media_data.plastic_volume|float }} cm3</p>
+<h3>{% trans %}Weigth{% endtrans %}</h3>
+<p>ABS: ~{{ media.media_data.plastic_volume*1.04|float }} g</p>
+<p>PLA: ~{{ media.media_data.plastic_volume*1.25|float }} g</p>
 {% endblock %}
