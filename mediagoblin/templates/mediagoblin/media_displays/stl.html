@@ -224,4 +224,7 @@ show('thingy_view');
 <h3>{% trans %}Weigth{% endtrans %}</h3>
 <p>ABS: ~{{ media.media_data.plastic_volume*1.04|float }} g</p>
 <p>PLA: ~{{ media.media_data.plastic_volume*1.25|float }} g</p>
+<h3>{% trans %}Gcode statistics{% endtrans %}</h3>
+<p> {{ media.media_data.layer_count|int }} layers</p>
+<p> {{ (media.media_data.total_duration|int/60) }} minutes</p>
 {% endblock %}

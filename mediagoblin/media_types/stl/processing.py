@@ -61,6 +61,103 @@ def sniff_handler(media_file, **kw):
 
     return False
 
+#The GCodeEstimator class is a based on code from Pronsole.py, part of Printrun
+# https://github.com/kliment/Printrun
+import math
+import time
+
+class GCodeEstimator():
+  def __init__(self, filename):
+    self.gcode = [line.strip() for line in open(filename).readlines()]
+
+  def totalelength(self, g):
+      tot=0
+      cur=0
+      for i in g:
+          if "E" in i and ("G1" in i or "G0" in i):
+              try:
+                  cur=float(i.split("E")[1].split(" ")[0])
+              except:
+                  pass
+          elif "G92" in i and "E0" in i:
+              tot+=cur
+      return tot
+
+  def get_coordinate_value(self, axis, parts):
+      for i in parts:
+          if (axis in i):
+              return float(i[1:])
+      return None
+
+  def hypot3d(self, X1, Y1, Z1, X2=0.0, Y2=0.0, Z2=0.0): 
+      return math.hypot(X2-X1, math.hypot(Y2-Y1, Z2-Z1))
+
+  def estimate(self):
+      lastx = lasty = lastz = laste = lastf = 0.0
+      x = y = z = e = f = 0.0
+      currenttravel = 0.0
+      totaltravel = 0.0
+      moveduration = 0.0
+      totalduration = 0.0
+      acceleration = 1500.0 #mm/s/s  ASSUMING THE DEFAULT FROM SPRINTER !!!!
+      layerduration = 0.0
+      layerbeginduration = 0.0
+      layercount=0
+      #TODO:
+      # get device caps from firmware: max speed, acceleration/axis (including extruder)
+      # calculate the maximum move duration accounting for above ;)
+      # print ".... estimating ...."
+      for i in self.gcode:
+          i=i.split(";")[0]
+          if "G4" in i or "G1" in i:
+              if "G4" in i:
+                  parts = i.split(" ")
+                  moveduration = self.get_coordinate_value("P", parts[1:])
+                  if moveduration is None:
+                      continue
+                  else:
+                      moveduration /= 1000.0
+              if "G1" in i:
+                  parts = i.split(" ")
+                  x = self.get_coordinate_value("X", parts[1:])
+                  if x is None: x=lastx
+                  y = self.get_coordinate_value("Y", parts[1:])
+                  if y is None: y=lasty
+                  z = self.get_coordinate_value("Z", parts[1:])
+                  if z is None: z=lastz
+                  e = self.get_coordinate_value("E", parts[1:])
+                  if e is None: e=laste
+                  f = self.get_coordinate_value("F", parts[1:])
+                  if f is None: f=lastf
+                  else: f /= 60.0 # mm/s vs mm/m
+                  
+                  # given last feedrate and current feedrate calculate the distance needed to achieve current feedrate.
+                  # if travel is longer than req'd distance, then subtract distance to achieve full speed, and add the time it took to get there.
+                  # then calculate the time taken to complete the remaining distance
+
+                  currenttravel = self.hypot3d(x, y, z, lastx, lasty, lastz)
+                  distance = 2* ((lastf+f) * (f-lastf) * 0.5 ) / acceleration  #2x because we have to accelerate and decelerate
+                  if distance <= currenttravel and ( lastf + f )!=0 and f!=0:
+                      moveduration = 2 * distance / ( lastf + f )
+                      currenttravel -= distance
+                      moveduration += currenttravel/f
+                  else:
+                      moveduration = math.sqrt( 2 * distance / acceleration )
+
+              totalduration += moveduration
+
+              if z > lastz:
+                  layercount +=1
+                  #print "layer z: ", lastz, " will take: ", time.strftime('%H:%M:%S', time.gmtime(totalduration-layerbeginduration))
+                  layerbeginduration = totalduration
+
+              lastx = x
+              lasty = y
+              lastz = z
+              laste = e
+              lastf = f
+
+      return (layercount, totalduration)
 
 def blender_render(config):
     """
@@ -184,7 +281,8 @@ def process_stl(proc_state):
         output_file = workbench.joinpath(filename)
 
         filament_length, plastic_volume = slicer(input_filename, output_file, fill_density=0.4, filament_diameter=2.8, layer_height=0.25)
-        
+        layer_count, total_duration = GCodeEstimator(output_file).estimate()
+
         # make sure the image rendered to the workbench path
         assert os.path.exists(output_file)
 
@@ -195,7 +293,7 @@ def process_stl(proc_state):
             with mgg.public_store.get_file(public_path, "wb") as public_file:
                 public_file.write(gcode.read())
 
-        return (public_path, filament_length, plastic_volume)
+        return (public_path, filament_length, plastic_volume, layer_count, total_duration)
 
     def snap(name, camera, width=640, height=640, project="ORTHO"):
         filename = name_builder.fill(name)
@@ -254,7 +352,7 @@ def process_stl(proc_state):
       blender_thumbs = False
       pass
 
-    gcode_filepath, filament_length, plastic_volume = generate_gcode(queued_filename, '{basename}.gcode')
+    gcode_filepath, filament_length, plastic_volume, layer_count, total_duration = generate_gcode(queued_filename, '{basename}.gcode')
 
     ## Save the public file stuffs
     model_filepath = create_pub_filepath(
@@ -289,6 +387,8 @@ def process_stl(proc_state):
         "depth" : model.depth,
         "filament_length": filament_length,
         "plastic_volume": plastic_volume,
+        "layer_count": layer_count, 
+        "total_duration": total_duration,
         "file_type" : ext,
         "blender_thumbs" : blender_thumbs,
         }
