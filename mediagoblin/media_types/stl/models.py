@@ -43,6 +43,9 @@ class StlData(Base):
     height = Column(Float)
     depth = Column(Float)
 
+    filament_length = Column(Float)
+    plastic_volume = Column(Float)
+
     file_type = Column(String)
     blender_thumbs = Column(Boolean)
 
