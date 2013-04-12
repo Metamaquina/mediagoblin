@@ -31,6 +31,11 @@ _log = logging.getLogger(__name__)
 SUPPORTED_FILETYPES = ['stl', 'obj']
 
 SLIC3R = "/home/felipe/devel/Slic3r/slic3r.pl"
+STARTGCODE_FILE = pkg_resources.resource_filename(
+    'mediagoblin.media_types.stl',
+    os.path.join(
+        'assets',
+        'start.gcode'))
 
 BLEND_FILE = pkg_resources.resource_filename(
     'mediagoblin.media_types.stl',
@@ -176,6 +181,7 @@ def blender_render(config):
 def slicer(input_filename, output_file, nozzle_temperature=185, bed_temperature=60, fill_density=0.4, filament_diameter=2.8, layer_height=0.25):
     subpr = subprocess.Popen(
         [SLIC3R, input_filename,
+          "--start-gcode", STARTGCODE_FILE,
           "--output", output_file,
           "--nozzle-diameter", "0.35",
           "--print-center", "100,100",
@@ -232,7 +238,6 @@ def slicer(input_filename, output_file, nozzle_temperature=185, bed_temperature=
           "--bed-size", "200,200",
           "--duplicate-grid", "1,1",
           "--duplicate-distance", "6",
-#          "--start-gcode", "'G28 X Y'",
           "--resolution", "0"], stdout=subprocess.PIPE)
 
     filament_length = 0
