@@ -104,16 +104,13 @@ class AsciiStlModel(ThreeDee):
     Parser for ascii-encoded stl files.  File format reference:
     http://en.wikipedia.org/wiki/STL_%28file_format%29#ASCII_STL
     """
+    def __vector(self, line):
+        return map(float, line.strip().split(" ")[-3:])
 
-    def __vector(self, line, expected=3):
-        nums = map(float, line.strip().split(" ")[1:])
-        return tuple(nums[:expected])
-    
     def load(self, fileob):
         for line in fileob:
             if "vertex" in line:
                 self.verts.append(self.__vector(line))
-
 
 def auto_detect(fileob, hint):
     """
