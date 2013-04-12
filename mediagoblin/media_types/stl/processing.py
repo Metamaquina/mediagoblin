@@ -173,7 +173,7 @@ def blender_render(config):
          "-P", BLEND_SCRIPT],
         env=env)
 
-def slicer(input_filename, output_file, fill_density=0.4, filament_diameter=2.8, layer_height=0.25):
+def slicer(input_filename, output_file, nozzle_temperature=185, bed_temperature=60, fill_density=0.4, filament_diameter=2.8, layer_height=0.25):
     subpr = subprocess.Popen(
         [SLIC3R, input_filename,
           "--output", output_file,
@@ -183,8 +183,9 @@ def slicer(input_filename, output_file, fill_density=0.4, filament_diameter=2.8,
           "--use-relative-e-distances",
           "--filament-diameter", str(filament_diameter),
           "--extrusion-multiplier", "1",
-          "--temperature", "185",
-          "--bed-temperature", "60",
+          "--temperature", str(nozzle_temperature),
+          "--first-layer-temperature", str(nozzle_temperature),
+          "--bed-temperature", str(bed_temperature),
           "--travel-speed", "130",
           "--perimeter-speed", "30",
           "--small-perimeter-speed", "30",
