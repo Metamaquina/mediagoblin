@@ -21,9 +21,6 @@
   
 {% block mediagoblin_media %}
 
-
-{% set gcode_download = request.app.public_store.file_url(
-   media.media_files['gcode']) %}
 {% set model_download = request.app.public_store.file_url(
    media.media_files['original']) %}
 {% if media.media_data.blender_thumbs %}
@@ -201,34 +198,48 @@ show('thingy_view');
      style="float:right;">
     {%- trans %}Download model{% endtrans -%}
   </a>
-
-  <a class="button_action" href="{{ gcode_download }}"
-     title="{%- trans %}Download Gcode{% endtrans -%}"
-     style="float:right;">
-    {%- trans %}Download G-Code{% endtrans -%}
-  </a>
 </div>
 
 
 {% endblock %}
 
-{% set seconds = media.media_data.total_duration %}
-{% set minutes = ((seconds/60)%60)|int %}
-{% set hours = (seconds/3600)|int %}
+{% set ABS_seconds = media.media_data.ABS_total_duration %}
+{% set ABS_minutes = ((ABS_seconds/60)%60)|int %}
+{% set ABS_hours = (ABS_seconds/3600)|int %}
+
+{% set PLA_seconds = media.media_data.PLA_total_duration %}
+{% set PLA_minutes = ((PLA_seconds/60)%60)|int %}
+{% set PLA_hours = (PLA_seconds/3600)|int %}
+{% set ABS_gcode_download = request.app.public_store.file_url(
+   media.media_files['ABS_gcode']) %}
+{% set PLA_gcode_download = request.app.public_store.file_url(
+   media.media_files['PLA_gcode']) %}
 
 {% block mediagoblin_sidebar %}
 <h3>{% trans %}File Format{% endtrans %}</h3>
 <p>{{ media.media_data.file_type }}</p>
 <h3>{% trans %}Object Height{% endtrans %}</h3>
 <p>~{{ media.media_data.height|int }} mm</p>
-<h3>{% trans %}Filament extruded{% endtrans %}</h3>
-<p>~{{ media.media_data.filament_length|float }} mm</p>
-<h3>{% trans %}Volume of plastic{% endtrans %}</h3>
-<p>~{{ media.media_data.plastic_volume|float }} cm3</p>
-<h3>{% trans %}Weigth{% endtrans %}</h3>
-<p>ABS: ~{{ media.media_data.plastic_volume*1.04|float }} g</p>
-<p>PLA: ~{{ media.media_data.plastic_volume*1.25|float }} g</p>
-<h3>{% trans %}Gcode statistics{% endtrans %}</h3>
-<p> {{ media.media_data.layer_count|int }} layers</p>
-<p> estimated print time:<br/> {{ hours }}h {{ minutes%60 }}min</p>
+
+<h2>ABS</h2>
+<a class="button_action" href="{{ ABS_gcode_download }}"
+   title="{%- trans %}Gcode{% endtrans -%}">
+  {%- trans %}G-Code{% endtrans -%}
+</a>
+<p>{% trans %}Filament extruded{% endtrans %}: ~{{ media.media_data.ABS_filament_length|float }} mm</p>
+<p>{% trans %}Volume of plastic{% endtrans %}: ~{{ media.media_data.ABS_plastic_volume|float }} cm3</p>
+<p>{% trans %}Weigth{% endtrans %}: ~{{ media.media_data.ABS_plastic_volume*1.04|float }} g</p>
+<p>layers: {{ media.media_data.ABS_layer_count|int }}</p>
+<p>estimated print time: {{ ABS_hours }}h {{ ABS_minutes%60 }}min</p>
+
+<h2>PLA</h2>
+<a class="button_action" href="{{ PLA_gcode_download }}"
+   title="{%- trans %}Gcode{% endtrans -%}">
+  {%- trans %}G-Code{% endtrans -%}
+</a>
+<p>{% trans %}Filament extruded{% endtrans %}: ~{{ media.media_data.PLA_filament_length|float }} mm</p>
+<p>{% trans %}Volume of plastic{% endtrans %}: ~{{ media.media_data.PLA_plastic_volume|float }} cm3</p>
+<p>{% trans %}Weigth{% endtrans %}: ~{{ media.media_data.PLA_plastic_volume*1.25|float }} g</p>
+<p>layers: {{ media.media_data.PLA_layer_count|int }}</p>
+<p>estimated print time: {{ PLA_hours }}h {{ PLA_minutes%60 }}min</p>
 {% endblock %}

@@ -43,10 +43,15 @@ class StlData(Base):
     height = Column(Float)
     depth = Column(Float)
 
-    filament_length = Column(Float)
-    plastic_volume = Column(Float)
-    layer_count = Column(Float)
-    total_duration = Column(Float)
+    PLA_filament_length = Column(Float)
+    PLA_plastic_volume = Column(Float)
+    PLA_layer_count = Column(Float)
+    PLA_total_duration = Column(Float)
+
+    ABS_filament_length = Column(Float)
+    ABS_plastic_volume = Column(Float)
+    ABS_layer_count = Column(Float)
+    ABS_total_duration = Column(Float)
 
     file_type = Column(String)
     blender_thumbs = Column(Boolean)

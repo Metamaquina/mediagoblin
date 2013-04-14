@@ -279,14 +279,21 @@ def process_stl(proc_state):
     greatest.sort()
     greatest = greatest[-1]
 
-    def generate_gcode(input_filename, output_filename):
+    def generate_gcode(input_filename, output_filename, material):
         """
         Called to slice the model and generate a gcode file.
         """
         filename = name_builder.fill(output_filename)
         output_file = workbench.joinpath(filename)
 
-        filament_length, plastic_volume = slicer(input_filename, output_file, fill_density=0.4, filament_diameter=2.8, layer_height=0.25)
+        if material=="ABS":
+          nozzle=230
+          bed=110
+        else:
+          nozzle=185
+          bed=60
+
+        filament_length, plastic_volume = slicer(input_filename, output_file, fill_density=0.4, nozzle_temperature=nozzle, bed_temperature=bed, filament_diameter=2.8, layer_height=0.25)
         layer_count, total_duration = GCodeEstimator(output_file).estimate()
 
         # make sure the image rendered to the workbench path
@@ -358,7 +365,8 @@ def process_stl(proc_state):
       blender_thumbs = False
       pass
 
-    gcode_filepath, filament_length, plastic_volume, layer_count, total_duration = generate_gcode(queued_filename, '{basename}.gcode')
+    ABS_gcode_filepath, ABS_filament_length, ABS_plastic_volume, ABS_layer_count, ABS_total_duration = generate_gcode(queued_filename, '{basename}_ABS.gcode', "ABS")
+    PLA_gcode_filepath, PLA_filament_length, PLA_plastic_volume, PLA_layer_count, PLA_total_duration = generate_gcode(queued_filename, '{basename}_PLA.gcode', "PLA")
 
     ## Save the public file stuffs
     model_filepath = create_pub_filepath(
@@ -375,7 +383,8 @@ def process_stl(proc_state):
     # Insert media file information into database
     media_files_dict = entry.setdefault('media_files', {})
     media_files_dict[u'original'] = model_filepath
-    media_files_dict[u'gcode'] = gcode_filepath
+    media_files_dict[u'ABS_gcode'] = ABS_gcode_filepath
+    media_files_dict[u'PLA_gcode'] = PLA_gcode_filepath
     if blender_thumbs:
       media_files_dict[u'thumb'] = thumb_path
       media_files_dict[u'perspective'] = perspective_path
@@ -391,10 +400,14 @@ def process_stl(proc_state):
         "width" : model.width,
         "height" : model.height,
         "depth" : model.depth,
-        "filament_length": filament_length,
-        "plastic_volume": plastic_volume,
-        "layer_count": layer_count, 
-        "total_duration": total_duration,
+        "ABS_filament_length": ABS_filament_length,
+        "ABS_plastic_volume": ABS_plastic_volume,
+        "ABS_layer_count": ABS_layer_count, 
+        "ABS_total_duration": ABS_total_duration,
+        "PLA_filament_length": PLA_filament_length,
+        "PLA_plastic_volume": PLA_plastic_volume,
+        "PLA_layer_count": PLA_layer_count, 
+        "PLA_total_duration": PLA_total_duration,
         "file_type" : ext,
         "blender_thumbs" : blender_thumbs,
         }
