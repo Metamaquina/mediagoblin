@@ -37,6 +37,12 @@ STARTGCODE_FILE = pkg_resources.resource_filename(
         'assets',
         'start.gcode'))
 
+ENDGCODE_FILE = pkg_resources.resource_filename(
+    'mediagoblin.media_types.stl',
+    os.path.join(
+        'assets',
+        'end.gcode'))
+
 BLEND_FILE = pkg_resources.resource_filename(
     'mediagoblin.media_types.stl',
     os.path.join(
@@ -178,10 +184,11 @@ def blender_render(config):
          "-P", BLEND_SCRIPT],
         env=env)
 
-def slicer(input_filename, output_file, nozzle_temperature=185, bed_temperature=60, fill_density=0.4, filament_diameter=2.8, layer_height=0.25):
+def slicer(input_filename, output_file, nozzle_temperature=230, bed_temperature=110, fill_density=0.4, filament_diameter=2.8, layer_height=0.15):
     subpr = subprocess.Popen(
         [SLIC3R, input_filename,
           "--start-gcode", STARTGCODE_FILE,
+          "--end-gcode", ENDGCODE_FILE,
           "--output", output_file,
           "--nozzle-diameter", "0.35",
           "--print-center", "100,100",
