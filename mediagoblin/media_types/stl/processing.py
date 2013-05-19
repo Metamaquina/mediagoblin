@@ -199,13 +199,13 @@ def slicer(input_filename, output_file, nozzle_temperature=230, bed_temperature=
           "--temperature", str(nozzle_temperature),
           "--first-layer-temperature", str(nozzle_temperature),
           "--bed-temperature", str(bed_temperature),
-          "--travel-speed", "100",
-          "--perimeter-speed", "50",
-          "--small-perimeter-speed", "50",
-          "--external-perimeter-speed", "70%",
-          "--infill-speed", "70",
-          "--solid-infill-speed", "60",
-          "--top-solid-infill-speed", "50",
+          "--travel-speed", "120",
+          "--perimeter-speed", "120",
+          "--small-perimeter-speed", "60",
+          "--external-perimeter-speed", "80%",
+          "--infill-speed", "120",
+          "--solid-infill-speed", "100%",
+          "--top-solid-infill-speed", "80%",
           "--support-material-speed", "60",
           "--bridge-speed", "60",
           "--gap-fill-speed", "20",
@@ -218,12 +218,12 @@ def slicer(input_filename, output_file, nozzle_temperature=230, bed_temperature=
           "--first-layer-height", "100%",
           "--infill-every-layers", "1",
           "--solid-infill-every-layers", "0",
-          "--perimeters", "3",
+          "--perimeters", "2",
           "--top-solid-layers", "3",
-          "--bottom-solid-layers", "3",
+          "--bottom-solid-layers", "2",
           "--fill-density", str(fill_density),
           "--fill-angle", "0",
-          "--fill-pattern", "rectilinear",
+          "--fill-pattern", "honeycomb",
           "--solid-fill-pattern", "rectilinear",
           "--extra-perimeters", "yes",
           "--randomize-start", "yes",
@@ -300,7 +300,7 @@ def process_stl(proc_state):
           nozzle=185
           bed=60
 
-        filament_length, plastic_volume = slicer(input_filename, output_file, fill_density=0.4, nozzle_temperature=nozzle, bed_temperature=bed, filament_diameter=2.8, layer_height=0.25)
+        filament_length, plastic_volume = slicer(input_filename, output_file, fill_density=0.3, nozzle_temperature=nozzle, bed_temperature=bed, filament_diameter=2.8, layer_height=0.25)
         layer_count, total_duration = GCodeEstimator(output_file).estimate()
 
         # make sure the image rendered to the workbench path
