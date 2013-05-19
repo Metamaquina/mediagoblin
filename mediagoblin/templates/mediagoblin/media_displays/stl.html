@@ -74,6 +74,7 @@ window.show = function (view_id) {
     }
 };
 
+window.webgl_renderer = null;
 window.show_things = function () {
     document.getElementById("webgl_button").onclick = function () {
         show('thingy_view');
@@ -81,10 +82,15 @@ window.show_things = function () {
     window.show("thingy_view");
     thingiurlbase = "{{ request.staticdirect('/js/extlib/thingiview.js') }}";
     thingiview = new Thingiview("thingy_view");
-    thingiview.setObjectColor('#821543');
+    thingiview.setObjectColor('#D00000');
+    thingiview.setBackgroundColor('#D0D0D0');
+//    thingiview.setGridColor('#000000');
     thingiview.initScene();
     thingiview.loadSTL("{{ model_download }}");
     thingiview.setRotation(false);
+    window.webgl_renderer = thingiview.renderer;
+    //alert(thingiview.renderer);
+    window.render_pixelart();
 };
 
 window.printer_dialog = function () {
@@ -98,6 +104,18 @@ window.close_printer_dialog = function () {
   dialog.style.display = "none";
 }
 
+window.render_pixelart = function () {
+  var w = 64;
+  var h = 64;
+  var ctx = window.webgl_renderer;
+  var arr = false;
+  if(!arr){
+    arr = new Uint8Array(w * h * 4);
+    ctx.readPixels(0, 0, w, h, ctx.RGBA, ctx.UNSIGNED_BYTE, arr);
+  }
+
+//  alert(arr[12000]);
+}
 </script>
 
 {% if media.media_data.blender_thumbs %}

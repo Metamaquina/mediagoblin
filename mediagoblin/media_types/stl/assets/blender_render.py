@@ -73,6 +73,10 @@ if CAMERA_TYPE == "PERSP":
     for obj in bpy.data.objects[2:]:
         obj.rotation_euler[2]=-.3
 
+mat = bpy.data.materials.new("PKHG")
+mat.diffuse_color = (float(.5),0.0,0.0)
+for obj in bpy.data.objects[2:]:
+    obj.active_material = mat
 
 # attempt to render
 scene = bpy.data.scenes.values()[0]

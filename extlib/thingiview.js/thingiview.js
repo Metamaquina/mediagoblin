@@ -698,9 +698,9 @@ Thingiview = function(containerId) {
     // log(msg);
   }
 
-  function loadPlaneGeometry() {
+  function loadPlaneGeometry(gridcolor=0x0f0f0f) {
     // TODO: switch to lines instead of the Plane object so we can get rid of the horizontal lines in canvas renderer...
-    plane = new THREE.Mesh(new Plane(100, 100, 10, 10), new THREE.MeshBasicMaterial({color:0xafafaf,wireframe:true}));
+    plane = new THREE.Mesh(new Plane(100, 100, 10, 10), new THREE.MeshBasicMaterial({color:gridcolor,wireframe:true}));
     scene.addObject(plane);
   }
 
@@ -713,8 +713,8 @@ Thingiview = function(containerId) {
         if (isWebGl) {
           // material = new THREE.MeshPhongMaterial(objectColor, objectColor, 0xffffff, 50, 1.0);
           // material = new THREE.MeshColorFillMaterial(objectColor);
-          // material = new THREE.MeshLambertMaterial({color:objectColor});
-          material = new THREE.MeshLambertMaterial({color:objectColor, shading: THREE.FlatShading});
+           material = new THREE.MeshLambertMaterial({color:objectColor});
+          //material = new THREE.MeshLambertMaterial({color:objectColor, shading: THREE.FlatShading});
         } else {
           // material = new THREE.MeshColorFillMaterial(objectColor);
           material = new THREE.MeshLambertMaterial({color:objectColor, shading: THREE.FlatShading});
