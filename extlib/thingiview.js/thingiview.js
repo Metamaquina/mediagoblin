@@ -182,6 +182,18 @@ Thingiview = function(containerId) {
   //     sceneLoop();
   //   }    
   // };
+
+  this.renderPixelArt = function () {
+    var ctx = renderer.domElement.getContext("experimental-webgl");
+    var w = 64;
+    var h = 64;
+    var arr = false;
+    if(!arr){
+      arr = new Uint8Array(w * h * 4);
+      ctx.readPixels(0, -10, w, h, ctx.RGBA, ctx.UNSIGNED_BYTE, arr);
+    }
+    return arr;
+  };
   
   onRendererScroll = function(event) {
     event.preventDefault();

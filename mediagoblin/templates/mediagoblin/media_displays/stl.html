@@ -74,7 +74,9 @@ window.show = function (view_id) {
     }
 };
 
-window.webgl_renderer = null;
+window.context2d = null;
+window.pixelart_size = 500;
+
 window.show_things = function () {
     document.getElementById("webgl_button").onclick = function () {
         show('thingy_view');
@@ -84,13 +86,18 @@ window.show_things = function () {
     thingiview = new Thingiview("thingy_view");
     thingiview.setObjectColor('#D00000');
     thingiview.setBackgroundColor('#D0D0D0');
-//    thingiview.setGridColor('#000000');
     thingiview.initScene();
     thingiview.loadSTL("{{ model_download }}");
-    thingiview.setRotation(false);
-    window.webgl_renderer = thingiview.renderer;
-    //alert(thingiview.renderer);
-    window.render_pixelart();
+    thingiview.setRotation(true);
+
+    window.thingiview = thingiview;
+
+    var canvas2d = document.createElement("canvas");
+    canvas2d.setAttribute("style", "height:" + window.pixelart_size + "px;width:" + (window.pixelart_size*64/64.0) + "px; position:absolute;top:0px;left:0px;");
+    window.context2d = canvas2d.getContext("2d", { antialias: false });
+    document.body.appendChild(canvas2d);
+
+    window.setInterval(window.pixel_art, 200);
 };
 
 window.printer_dialog = function () {
@@ -104,19 +111,40 @@ window.close_printer_dialog = function () {
   dialog.style.display = "none";
 }
 
-window.render_pixelart = function () {
-  var w = 64;
-  var h = 64;
-  var ctx = window.webgl_renderer;
-  var arr = false;
-  if(!arr){
-    arr = new Uint8Array(w * h * 4);
-    ctx.readPixels(0, 0, w, h, ctx.RGBA, ctx.UNSIGNED_BYTE, arr);
-  }
+var maxc=0;
 
-//  alert(arr[12000]);
+window.pixel_art = function (){
+    var a = window.thingiview.renderPixelArt();
+    var ctx = window.context2d;
+    var border = 0;
+//    var size = (window.pixelart_size*0.8)/64.0 - border;
+    var size = 4;
+
+    for (var x=0; x<64; x++){
+      for (var y=0; y<64; y++){
+        var color = (a[4*(x+64*y)] + a[4*(x+64*y) + 1] + a[4*(x+64*y) + 2])/3;
+
+        if (color > maxc) maxc = color;
+        var code = ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"][Math.floor(16*color/80)];
+
+        ctx.fillStyle = "#0" + code + code;
+        ctx.fillRect((size+border)*x, (size+border)*(63-y), size, size);
+      }
+    }
 }
+
+window.printmaxc = function(){
+  document.getElementById("max").innerHTML = maxc;
+}
+
 </script>
+<div onclick="window.printmaxc();">
+Print Max Color
+</div>
+
+Max Color Value:
+<div id="max">
+</div>
 
 {% if media.media_data.blender_thumbs %}
 <img 
@@ -167,7 +195,7 @@ window.render_pixelart = function () {
 </div>
 {% endif %}
 
-<div id="thingy_view" style="width:640px;height:640px;"></div>
+<div id="thingy_view" style="width:64px;height:64px;"></div>
 
 
 <div style="padding: 4px;">
