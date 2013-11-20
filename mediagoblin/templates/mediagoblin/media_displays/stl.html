@@ -97,12 +97,12 @@ window.printer_dialog = function () {
   dialog = document.getElementById("printer");
   dialog.style.display = "block";
   show("perspective");
-}
+};
 
 window.close_printer_dialog = function () {
   dialog = document.getElementById("printer");
   dialog.style.display = "none";
-}
+};
 
 window.render_pixelart = function () {
   var w = 64;
@@ -113,9 +113,30 @@ window.render_pixelart = function () {
     arr = new Uint8Array(w * h * 4);
     ctx.readPixels(0, 0, w, h, ctx.RGBA, ctx.UNSIGNED_BYTE, arr);
   }
+};
 
-//  alert(arr[12000]);
-}
+window.load_binary_resource = function(url) {
+	var req = new XMLHttpRequest();
+	req.open('GET', url, false);
+	// The following line says we want to receive data as Binary and not as Unicode
+	req.overrideMimeType('text/plain; charset=x-user-defined');
+	req.send(null);
+	if (req.status != 200) return '';
+
+	return req.responseText;
+};
+
+window.printThis = function () {
+  var form = new FormData();
+
+  var bin = window.load_binary_resource("{{ model_download }}");
+  var blob = new Blob([bin], { type: "text/plain"});
+  form.append("file", blob);
+
+  var req = new XMLHttpRequest();
+  req.open("POST", "http://127.0.0.1:8000/print");
+  req.send(form);
+};
 </script>
 
 {% if media.media_data.blender_thumbs %}
@@ -156,6 +177,7 @@ window.render_pixelart = function () {
     <h2>Impressão 3D</h2>
     Escolha uma impressora para enviar esta peça para impressão:<br/><br/><br/>
       <ul>
+        <li><a class="button_action" onclick="window.printThis();">PrintServer</a></li>
         <li><a class="button_action" onclick="">Gatinho de Beco</a> <em>R$12,00</em> - São Paulo, SP</li>
         <li><a class="button_action" onclick="">Coisinha Automática</a> <em>R$ 11,50</em> - Campinas, SP</li>
         <li><a class="button_action" onclick="">Bolinho de Chuva</a> <em>R$ 17,00</em> - Salvador, BA</li>
