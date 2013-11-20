@@ -4,3 +4,6 @@
 [submodule "extlib/pdf.js"]
 	path = extlib/pdf.js
 	url = git://github.com/mozilla/pdf.js.git
+[submodule "mediagoblin/themes/tangibl"]
+	path = mediagoblin/themes/tangibl
+	url = git@github.com:Metamaquina/gmg-tangibl-theme.git
