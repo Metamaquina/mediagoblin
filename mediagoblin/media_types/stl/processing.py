@@ -241,7 +241,7 @@ class CommonStlProcessor(MediaProcessor):
             size)
 
         self.entry.set_file_metadata('side', size=size)
-
+    
     def store_dimensions(self):
         """
         Put model dimensions into the database
@@ -253,6 +253,7 @@ class CommonStlProcessor(MediaProcessor):
             "width": self.model.width,
             "height": self.model.height,
             "depth": self.model.depth,
+            "volume": self.model.volume,
             "file_type": self.ext,
             }
         self.entry.media_data_init(**dimensions)

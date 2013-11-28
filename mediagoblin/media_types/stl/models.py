@@ -42,6 +42,7 @@ class StlData(Base):
     width = Column(Float)
     height = Column(Float)
     depth = Column(Float)
+    volume = Column(Float)
 
     file_type = Column(String)
 

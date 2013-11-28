@@ -16,6 +16,7 @@
 
 
 import struct
+import admesh
 
 
 class ThreeDeeParseError(Exception):
@@ -29,6 +30,13 @@ class ThreeDee():
     rendering.
     """
 
+    def calculate_volume(self, fileob):
+        _stl_file = admesh.stl_file()
+        print "fileob.name: %s" % fileob.name
+        admesh.stl_open(_stl_file, str(fileob.name))
+        admesh.stl_calculate_volume(_stl_file)
+        return _stl_file.stats.volume        
+        
     def __init__(self, fileob):
         self.verts = []
         self.average = [0, 0, 0]
@@ -61,6 +69,8 @@ class ThreeDee():
         self.width = abs(self.min[0] - self.max[0])
         self.depth = abs(self.min[1] - self.max[1])
         self.height = abs(self.min[2] - self.max[2])
+        #XXX: ASCII STL only!
+        self.volume = self.calculate_volume(fileob)
 
 
     def load(self, fileob):

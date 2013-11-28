@@ -139,6 +139,13 @@ window.show_things = function () {
 {% block mediagoblin_sidebar %}
 <h3>{% trans %}File Format{% endtrans %}</h3>
 <p>{{ media.media_data.file_type }}</p>
+<h3>{% trans %}Object Volume{% endtrans %}</h3>
+<p>~{{ media.media_data.volume|int }} mm³</p>
 <h3>{% trans %}Object Height{% endtrans %}</h3>
 <p>~{{ media.media_data.height|int }} mm</p>
+<h3>{% trans %}Object Width{% endtrans %}</h3>
+<p>~{{ media.media_data.width|int }} mm</p>
+<h3>{% trans %}Object Depth{% endtrans %}</h3>
+<p>~{{ media.media_data.depth|int }} mm</p>
+
 {% endblock %}
