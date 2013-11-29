@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNU MediaGoblin\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-11-05 14:44-0600\n"
-"PO-Revision-Date: 2013-11-05 20:45+0000\n"
+"POT-Creation-Date: 2013-11-26 13:58-0600\n"
+"PO-Revision-Date: 2013-11-26 19:59+0000\n"
 "Last-Translator: cwebber <cwebber@dustycloud.org>\n"
 "Language-Team: Icelandic (Iceland) (http://www.transifex.com/projects/p/mediagoblin/language/is_IS/)\n"
 "MIME-Version: 1.0\n"
@@ -22,15 +22,15 @@ msgstr ""
 "Language: is_IS\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: mediagoblin/decorators.py:299 mediagoblin/plugins/openid/views.py:202
+#: mediagoblin/decorators.py:300 mediagoblin/plugins/openid/views.py:202
 msgid "Sorry, registration is disabled on this instance."
 msgstr "Því miður er nýskráning ekki leyfð á þessu svæði."
 
-#: mediagoblin/decorators.py:314
+#: mediagoblin/decorators.py:315
 msgid "Sorry, reporting is disabled on this instance."
-msgstr ""
+msgstr "Því miður eru tilkynningar óvirkar á þessum vef."
 
-#: mediagoblin/decorators.py:357 mediagoblin/plugins/ldap/views.py:55
+#: mediagoblin/decorators.py:358 mediagoblin/plugins/ldap/views.py:55
 #: mediagoblin/plugins/persona/views.py:77
 msgid "Sorry, authentication is disabled on this instance."
 msgstr "Því miður er auðkenning ekki möguleg á þessu vefsvæði."
@@ -83,28 +83,37 @@ msgid "Resent your verification email."
 msgstr "Endursendi staðfestingartölvupóst"
 
 #: mediagoblin/edit/forms.py:27 mediagoblin/edit/forms.py:87
+#: mediagoblin/plugins/html5-multi-upload/forms.py:28
 #: mediagoblin/submit/forms.py:37 mediagoblin/submit/forms.py:61
 #: mediagoblin/user_pages/forms.py:45
 msgid "Title"
 msgstr "Titill"
 
-#: mediagoblin/edit/forms.py:30 mediagoblin/submit/forms.py:40
+#: mediagoblin/edit/forms.py:30
+#: mediagoblin/plugins/html5-multi-upload/forms.py:31
+#: mediagoblin/submit/forms.py:40
 msgid "Description of this work"
 msgstr "Lýsing á þessu efni"
 
 #: mediagoblin/edit/forms.py:31 mediagoblin/edit/forms.py:54
-#: mediagoblin/edit/forms.py:91 mediagoblin/submit/forms.py:65
+#: mediagoblin/edit/forms.py:91
+#: mediagoblin/plugins/html5-multi-upload/forms.py:32
+#: mediagoblin/submit/forms.py:65
 msgid ""
 "You can use\n"
 "                      <a href=\"http://daringfireball.net/projects/markdown/basics\">\n"
 "                      Markdown</a> for formatting."
 msgstr "Þú getur notað\n                      <a href=\"http://daringfireball.net/projects/markdown/basics\">\n                      Markdown</a> til að stílgera textann."
 
-#: mediagoblin/edit/forms.py:35 mediagoblin/submit/forms.py:45
+#: mediagoblin/edit/forms.py:35
+#: mediagoblin/plugins/html5-multi-upload/forms.py:36
+#: mediagoblin/submit/forms.py:45
 msgid "Tags"
 msgstr "Efnisorð"
 
-#: mediagoblin/edit/forms.py:37 mediagoblin/submit/forms.py:47
+#: mediagoblin/edit/forms.py:37
+#: mediagoblin/plugins/html5-multi-upload/forms.py:38
+#: mediagoblin/submit/forms.py:47
 msgid "Separate tags by commas."
 msgstr "Aðskildu efnisorðin með kommum."
 
@@ -122,7 +131,9 @@ msgid ""
 "this."
 msgstr "Titilhlutinn í vefslóð þessa efnis. Þú þarft vanalega ekki að breyta þessu."
 
-#: mediagoblin/edit/forms.py:46 mediagoblin/submit/forms.py:50
+#: mediagoblin/edit/forms.py:46
+#: mediagoblin/plugins/html5-multi-upload/forms.py:44
+#: mediagoblin/submit/forms.py:50
 #: mediagoblin/templates/mediagoblin/utils/license.html:20
 msgid "License"
 msgstr "Notkunarleyfi"
@@ -231,7 +242,7 @@ msgstr "Aðgangsstillingar vistaðar"
 msgid "You need to confirm the deletion of your account."
 msgstr "Þú verður að samþykkja eyðingu á notandaaðganginum þínum."
 
-#: mediagoblin/edit/views.py:313 mediagoblin/submit/views.py:194
+#: mediagoblin/edit/views.py:313 mediagoblin/submit/views.py:132
 #: mediagoblin/user_pages/views.py:242
 #, python-format
 msgid "You already have a collection called \"%s\"!"
@@ -302,39 +313,39 @@ msgstr "Þverkóðun myndskeiðs mistókst"
 
 #: mediagoblin/moderation/forms.py:21
 msgid "Take away privilege"
-msgstr ""
+msgstr "Taka burt réttindi"
 
 #: mediagoblin/moderation/forms.py:22
 msgid "Ban the user"
-msgstr ""
+msgstr "Banna notanda"
 
 #: mediagoblin/moderation/forms.py:23
 msgid "Send the user a message"
-msgstr ""
+msgstr "Senda notandanum skilaboð"
 
 #: mediagoblin/moderation/forms.py:24
 msgid "Delete the content"
-msgstr ""
+msgstr "Eyða efninu"
 
 #: mediagoblin/moderation/forms.py:53 mediagoblin/moderation/forms.py:118
 msgid "User will be banned until:"
-msgstr ""
+msgstr "Notandi í banni þangað til:"
 
 #: mediagoblin/moderation/forms.py:57
 msgid "Why are you banning this User?"
-msgstr ""
+msgstr "Af hverju ertu að banna þennan notanda?"
 
 #: mediagoblin/moderation/forms.py:109
 msgid "What action will you take to resolve the report?"
-msgstr ""
+msgstr "Hvað ætlarðu að gera til að vinna úr tilkynningunni?"
 
 #: mediagoblin/moderation/forms.py:115
 msgid "What privileges will you take away?"
-msgstr ""
+msgstr "Hvaða réttindi ætlarðu að taka burt?"
 
 #: mediagoblin/moderation/tools.py:91
 msgid "Warning from"
-msgstr ""
+msgstr "Viðvörun frá"
 
 #: mediagoblin/notifications/tools.py:54 mediagoblin/user_pages/lib.py:60
 msgid "commented on your post"
@@ -357,6 +368,21 @@ msgstr "Þú verður að gefa upp OAuth tóka (oauth_token)."
 #: mediagoblin/oauth/views.py:244 mediagoblin/oauth/views.py:294
 msgid "No request token found."
 msgstr "Engin beiðni fannst."
+
+#: mediagoblin/plugins/api/views.py:75 mediagoblin/plugins/piwigo/views.py:155
+#: mediagoblin/submit/views.py:78
+msgid "Sorry, the file size is too big."
+msgstr "Því miður er skráin of stór."
+
+#: mediagoblin/plugins/api/views.py:78 mediagoblin/plugins/piwigo/views.py:158
+#: mediagoblin/submit/views.py:81
+msgid "Sorry, uploading this file will put you over your upload limit."
+msgstr "Því miður mun upphal á þessari skrá sprengja upphalshámarkið þitt."
+
+#: mediagoblin/plugins/api/views.py:82 mediagoblin/plugins/piwigo/views.py:162
+#: mediagoblin/submit/views.py:87
+msgid "Sorry, you have reached your upload limit."
+msgstr "Því miður hefur þú náð upphalshámarki"
 
 #: mediagoblin/plugins/basic_auth/forms.py:24
 #: mediagoblin/plugins/ldap/forms.py:35 mediagoblin/plugins/openid/forms.py:27
@@ -417,7 +443,7 @@ msgstr "Þú getur núna innskráð þig með nýja lykilorðinu þínu."
 msgid ""
 "You are no longer an active user. Please contact the system admin to "
 "reactivate your account."
-msgstr ""
+msgstr "Þú ert ekki lengur virkur notandi. Vinsamlegast talaðu við stjóranda til að endurvirkja aðganginn þinn."
 
 #: mediagoblin/plugins/basic_auth/views.py:215
 msgid "Your password was changed successfully"
@@ -453,7 +479,7 @@ msgstr "Búðu til aðgang hérna!"
 
 #: mediagoblin/plugins/basic_auth/templates/mediagoblin/plugins/basic_auth/edit_link.html:22
 msgid "Change your password."
-msgstr ""
+msgstr "Breyta lykilorðinu þínu."
 
 #: mediagoblin/plugins/basic_auth/templates/mediagoblin/plugins/basic_auth/forgot_password.html:23
 #: mediagoblin/plugins/basic_auth/templates/mediagoblin/plugins/basic_auth/forgot_password.html:31
@@ -477,9 +503,39 @@ msgstr "Staðsetning"
 msgid "View on <a href=\"%(osm_url)s\">OpenStreetMap</a>"
 msgstr "Skoða á <a href=\"%(osm_url)s\">OpenStreetMap</a>"
 
+#: mediagoblin/plugins/html5-multi-upload/forms.py:26
+#: mediagoblin/submit/forms.py:34
+msgid "File"
+msgstr "Skrá"
+
+#: mediagoblin/plugins/html5-multi-upload/views.py:53
+msgid "You must provide at least one file."
+msgstr "Þú verður að hala upp að minnsta kosti einni skrá."
+
+#: mediagoblin/plugins/html5-multi-upload/views.py:121
+#, python-format
+msgid "Woohoo! Submitted %d Files!"
+msgstr "Úúúújeee! Sendi inn %d skrár!"
+
+#: mediagoblin/plugins/html5-multi-upload/templates/start.html:23
+#: mediagoblin/plugins/html5-multi-upload/templates/start.html:30
+#: mediagoblin/templates/mediagoblin/submit/start.html:28
+#: mediagoblin/templates/mediagoblin/submit/start.html:35
+msgid "Add your media"
+msgstr "Sendu inn efni"
+
+#: mediagoblin/plugins/html5-multi-upload/templates/start.html:52
+#: mediagoblin/plugins/oauth/templates/oauth/client/register.html:29
+#: mediagoblin/plugins/openid/templates/mediagoblin/plugins/openid/add.html:39
+#: mediagoblin/templates/mediagoblin/submit/collection.html:30
+#: mediagoblin/templates/mediagoblin/submit/start.html:39
+#: mediagoblin/templates/mediagoblin/user_pages/media_collect.html:68
+msgid "Add"
+msgstr "Bæta við"
+
 #: mediagoblin/plugins/ldap/templates/mediagoblin/plugins/ldap/create_account_link.html:22
 msgid "Sign in to create an account!"
-msgstr ""
+msgstr "Skráðu þig inn til að búa til aðgang!"
 
 #: mediagoblin/plugins/oauth/forms.py:29
 msgid "Allow"
@@ -546,14 +602,6 @@ msgstr "Biðlarartengingar OAuth"
 #: mediagoblin/plugins/oauth/templates/oauth/client/list.html:22
 msgid "Your OAuth clients"
 msgstr "OAuth-biðlararnir þínir"
-
-#: mediagoblin/plugins/oauth/templates/oauth/client/register.html:29
-#: mediagoblin/plugins/openid/templates/mediagoblin/plugins/openid/add.html:39
-#: mediagoblin/templates/mediagoblin/submit/collection.html:30
-#: mediagoblin/templates/mediagoblin/submit/start.html:39
-#: mediagoblin/templates/mediagoblin/user_pages/media_collect.html:68
-msgid "Add"
-msgstr "Bæta við"
 
 #: mediagoblin/plugins/openid/__init__.py:97
 #: mediagoblin/plugins/openid/views.py:268
@@ -693,7 +741,7 @@ msgstr "Bæta við „Persona“ netfangi"
 
 #: mediagoblin/plugins/persona/templates/mediagoblin/plugins/persona/edit_link.html:21
 msgid "Persona's"
-msgstr ""
+msgstr "Persona auðkenni"
 
 #: mediagoblin/plugins/persona/templates/mediagoblin/plugins/persona/login_link.html:22
 msgid "Or login with Persona!"
@@ -703,61 +751,45 @@ msgstr "...eða skráðu þig inn með „Persona“!"
 msgid "Or register with Persona!"
 msgstr "...eða nýskráðu þig með „Persona“!"
 
-#: mediagoblin/processing/__init__.py:422
+#: mediagoblin/processing/__init__.py:420
 msgid "Invalid file given for media type."
 msgstr "Ógild skrá gefin fyrir þessa margmiðlunartegund."
 
-#: mediagoblin/processing/__init__.py:429
+#: mediagoblin/processing/__init__.py:427
 msgid "Copying to public storage failed."
 msgstr "Það tókst ekki að afrita yfir í almennu geymsluna."
 
-#: mediagoblin/processing/__init__.py:437
+#: mediagoblin/processing/__init__.py:435
 msgid "An acceptable processing file was not found"
 msgstr "Nothæf keyrsluskrá fannst ekki"
 
 #: mediagoblin/submit/forms.py:30
 msgid "Max file size: {0} mb"
-msgstr ""
-
-#: mediagoblin/submit/forms.py:34
-msgid "File"
-msgstr "Skrá"
+msgstr "Hámarksskráarstærð: {0} MB"
 
 #: mediagoblin/submit/forms.py:41
 msgid ""
 "You can use\n"
 "                        <a href=\"http://daringfireball.net/projects/markdown/basics\">\n"
 "                        Markdown</a> for formatting."
-msgstr ""
+msgstr "Þú getur notað\n                        <a href=\"http://daringfireball.net/projects/markdown/basics\">\n                        Markdown</a> fyrir stílsnið."
 
-#: mediagoblin/submit/views.py:57
-msgid "Sorry, you have reached your upload limit."
-msgstr ""
-
-#: mediagoblin/submit/views.py:73
+#: mediagoblin/submit/views.py:55
 msgid "You must provide a file."
 msgstr "Þú verður að gefa upp skrá."
 
-#: mediagoblin/submit/views.py:120
-msgid "Sorry, the file size is too big."
-msgstr ""
-
-#: mediagoblin/submit/views.py:126
-msgid "Sorry, uploading this file will put you over your upload limit."
-msgstr ""
-
-#: mediagoblin/submit/views.py:147
+#: mediagoblin/submit/views.py:69
 msgid "Woohoo! Submitted!"
 msgstr "Jibbí jei! Það tókst að senda inn!"
 
-#: mediagoblin/submit/views.py:200
+#: mediagoblin/submit/views.py:138
 #, python-format
 msgid "Collection \"%s\" added!"
 msgstr "Albúmið \"%s\" var búið til!"
 
 #: mediagoblin/templates/mediagoblin/banned.html:20
 msgid "You are Banned."
-msgstr ""
+msgstr "Þú ert í banni."
 
 #: mediagoblin/templates/mediagoblin/banned.html:24
 #: mediagoblin/templates/mediagoblin/error.html:24
@@ -766,16 +798,16 @@ msgstr "Mynd af durt í stresskasti"
 
 #: mediagoblin/templates/mediagoblin/banned.html:26
 msgid "You have been banned"
-msgstr ""
+msgstr "Stjórnandi hefur bannað þig"
 
 #: mediagoblin/templates/mediagoblin/banned.html:28
 #, python-format
 msgid "until %(until_when)s"
-msgstr ""
+msgstr "þangað til %(until_when)s"
 
 #: mediagoblin/templates/mediagoblin/banned.html:30
 msgid "indefinitely"
-msgstr ""
+msgstr "ótilgreint"
 
 #: mediagoblin/templates/mediagoblin/base.html:81
 msgid "Verify your email!"
@@ -820,11 +852,11 @@ msgstr "Búa til nýtt albúm"
 
 #: mediagoblin/templates/mediagoblin/base.html:151
 msgid "User management panel"
-msgstr ""
+msgstr "Notendastýring"
 
 #: mediagoblin/templates/mediagoblin/base.html:155
 msgid "Report management panel"
-msgstr ""
+msgstr "Tilkynningastýring"
 
 #: mediagoblin/templates/mediagoblin/root.html:32
 msgid "Most recent media"
@@ -920,7 +952,7 @@ msgstr "Gefið út undir <a href=\"http://www.fsf.org/licensing/licenses/agpl-3.
 
 #: mediagoblin/templates/mediagoblin/bits/base_footer.html:30
 msgid "Terms of Service"
-msgstr ""
+msgstr "Notendaskilmálar"
 
 #: mediagoblin/templates/mediagoblin/bits/frontpage_welcome.html:20
 msgid "Explore"
@@ -1233,20 +1265,20 @@ msgstr "Ekkert fullunnið efni enn!"
 
 #: mediagoblin/templates/mediagoblin/moderation/report.html:27
 msgid "Sorry, no such report found."
-msgstr ""
+msgstr "Því miður fannst engin slík tilkynning."
 
 #: mediagoblin/templates/mediagoblin/moderation/report.html:32
 msgid "Return to Reports Panel"
-msgstr ""
+msgstr "Fara aftur í tilkynningastýringu"
 
 #: mediagoblin/templates/mediagoblin/moderation/report.html:33
 #: mediagoblin/templates/mediagoblin/user_pages/media.html:155
 msgid "Report"
-msgstr ""
+msgstr "Tilkynning"
 
 #: mediagoblin/templates/mediagoblin/moderation/report.html:36
 msgid "Reported comment"
-msgstr ""
+msgstr "Tilkynnt athugasemd"
 
 #: mediagoblin/templates/mediagoblin/moderation/report.html:81
 #, python-format
@@ -1254,7 +1286,7 @@ msgid ""
 "\n"
 "        ❖ Reported media by <a href=\"%(user_url)s\">%(user_name)s</a>\n"
 "    "
-msgstr ""
+msgstr "\n        ❖ Tilkynnt efni sem <a href=\"%(user_url)s\">%(user_name)s</a> setti inn\n    "
 
 #: mediagoblin/templates/mediagoblin/moderation/report.html:90
 #, python-format
@@ -1264,64 +1296,64 @@ msgid ""
 "            <a href=\"%(user_url)s\"> %(user_name)s</a>\n"
 "          HAS BEEN DELETED\n"
 "        "
-msgstr ""
+msgstr "\n          EFNI SEM\n            <a href=\"%(user_url)s\"> %(user_name)s</a>\n          SETTI INN VAR EYTT\n        "
 
 #: mediagoblin/templates/mediagoblin/moderation/report.html:130
 #: mediagoblin/templates/mediagoblin/moderation/user.html:128
 msgid "Resolve"
-msgstr ""
+msgstr "Leysa"
 
 #: mediagoblin/templates/mediagoblin/moderation/report.html:134
 #: mediagoblin/templates/mediagoblin/moderation/report.html:153
 msgid "Resolve This Report"
-msgstr ""
+msgstr "Leysa þessa tilkynningu"
 
 #: mediagoblin/templates/mediagoblin/moderation/report.html:145
 msgid "Status"
-msgstr ""
+msgstr "Staða"
 
 #: mediagoblin/templates/mediagoblin/moderation/report.html:147
 msgid "RESOLVED"
-msgstr ""
+msgstr "LEYST"
 
 #: mediagoblin/templates/mediagoblin/moderation/report.html:155
 msgid "You cannot take action against an administrator"
-msgstr ""
+msgstr "Þú getur ekki gert þetta gagnvart stjórnanda"
 
 #: mediagoblin/templates/mediagoblin/moderation/report_panel.html:22
 #: mediagoblin/templates/mediagoblin/moderation/report_panel.html:27
 msgid "Report panel"
-msgstr ""
+msgstr "Tilkynningastýring"
 
 #: mediagoblin/templates/mediagoblin/moderation/report_panel.html:30
 msgid ""
 "\n"
 "    Here you can look up open reports that have been filed by users.\n"
 "  "
-msgstr ""
+msgstr "\n    Hér getur þú flett upp opnum tilkynningum frá notendum.\n  "
 
 #: mediagoblin/templates/mediagoblin/moderation/report_panel.html:35
 msgid "Active Reports Filed"
-msgstr ""
+msgstr "Virkar innsendar tilkynningar"
 
 #: mediagoblin/templates/mediagoblin/moderation/report_panel.html:77
 #: mediagoblin/templates/mediagoblin/moderation/report_panel.html:171
 msgid "Offender"
-msgstr ""
+msgstr "Gerandi"
 
 #: mediagoblin/templates/mediagoblin/moderation/report_panel.html:78
 msgid "When Reported"
-msgstr ""
+msgstr "Hvenær tilkynnt"
 
 #: mediagoblin/templates/mediagoblin/moderation/report_panel.html:79
 #: mediagoblin/templates/mediagoblin/moderation/report_panel.html:173
 msgid "Reported By"
-msgstr ""
+msgstr "Tilkynnt af"
 
 #: mediagoblin/templates/mediagoblin/moderation/report_panel.html:80
 #: mediagoblin/templates/mediagoblin/moderation/report_panel.html:174
 msgid "Reason"
-msgstr ""
+msgstr "Ástæða"
 
 #: mediagoblin/templates/mediagoblin/moderation/report_panel.html:94
 #, python-format
@@ -1329,7 +1361,7 @@ msgid ""
 "\n"
 "                Comment Report #%(report_id)s\n"
 "              "
-msgstr ""
+msgstr "\n                Athugasemdartilkynning #%(report_id)s\n              "
 
 #: mediagoblin/templates/mediagoblin/moderation/report_panel.html:109
 #, python-format
@@ -1337,23 +1369,23 @@ msgid ""
 "\n"
 "                Media Report #%(report_id)s\n"
 "              "
-msgstr ""
+msgstr "\n                Efnistilkynning #%(report_id)s\n              "
 
 #: mediagoblin/templates/mediagoblin/moderation/report_panel.html:123
 msgid "No open reports found."
-msgstr ""
+msgstr "Engar opnar tilkynningar fundust."
 
 #: mediagoblin/templates/mediagoblin/moderation/report_panel.html:125
 msgid "Closed Reports"
-msgstr ""
+msgstr "Kláraðar tilkynningar"
 
 #: mediagoblin/templates/mediagoblin/moderation/report_panel.html:170
 msgid "Resolved"
-msgstr ""
+msgstr "Leyst"
 
 #: mediagoblin/templates/mediagoblin/moderation/report_panel.html:172
 msgid "Action Taken"
-msgstr ""
+msgstr "Aðgerð tekin"
 
 #: mediagoblin/templates/mediagoblin/moderation/report_panel.html:185
 #, python-format
@@ -1361,16 +1393,16 @@ msgid ""
 "\n"
 "              Closed Report #%(report_id)s\n"
 "            "
-msgstr ""
+msgstr "\n              Kláruð tilkynning #%(report_id)s\n            "
 
 #: mediagoblin/templates/mediagoblin/moderation/report_panel.html:199
 msgid "No closed reports found."
-msgstr ""
+msgstr "Engar kláraðar tilkynningar fundust."
 
 #: mediagoblin/templates/mediagoblin/moderation/user.html:23
 #, python-format
 msgid "User: %(username)s"
-msgstr ""
+msgstr "Notandi: %(username)s"
 
 #: mediagoblin/templates/mediagoblin/moderation/user.html:39
 msgid "Sorry, no such user found."
@@ -1386,11 +1418,11 @@ msgstr "Staðfesting á netfangi nauðsynleg"
 msgid ""
 "Someone has registered an account with this username, but it still has\n"
 "        to be activated."
-msgstr ""
+msgstr "Einhver hefur skráð notandaaðgang með þessu notandanafni en hefur ekki\n        virkjað aðganginn."
 
 #: mediagoblin/templates/mediagoblin/moderation/user.html:58
 msgid "Return to Users Panel"
-msgstr ""
+msgstr "Fara aftur í notendastýringu"
 
 #: mediagoblin/templates/mediagoblin/moderation/user.html:60
 #: mediagoblin/templates/mediagoblin/user_pages/user.html:34
@@ -1403,11 +1435,11 @@ msgstr "Kenniskrá fyrir: %(username)s"
 #: mediagoblin/templates/mediagoblin/moderation/user.html:62
 #, python-format
 msgid "BANNED until %(expiration_date)s"
-msgstr ""
+msgstr "Í BANNI þangað til %(expiration_date)s"
 
 #: mediagoblin/templates/mediagoblin/moderation/user.html:66
 msgid "Banned Indefinitely"
-msgstr ""
+msgstr "Í BANNI um ótilgreindan tíma"
 
 #: mediagoblin/templates/mediagoblin/moderation/user.html:72
 #: mediagoblin/templates/mediagoblin/user_pages/user.html:61
@@ -1428,112 +1460,107 @@ msgstr "Skoða albúm"
 #: mediagoblin/templates/mediagoblin/moderation/user.html:97
 #, python-format
 msgid "Active Reports on %(username)s"
-msgstr ""
+msgstr "Virkar tilkynningar fyrir: %(username)s"
 
 #: mediagoblin/templates/mediagoblin/moderation/user.html:104
 msgid "Report ID"
-msgstr ""
+msgstr "Auðkenni tilkynningar"
 
 #: mediagoblin/templates/mediagoblin/moderation/user.html:105
 msgid "Reported Content"
-msgstr ""
+msgstr "Tilkynnt innihald"
 
 #: mediagoblin/templates/mediagoblin/moderation/user.html:106
 msgid "Description of Report"
-msgstr ""
+msgstr "Lýsing á tilkynningu"
 
 #: mediagoblin/templates/mediagoblin/moderation/user.html:114
 #, python-format
 msgid "Report #%(report_number)s"
-msgstr ""
+msgstr "Tilkynning #%(report_number)s"
 
 #: mediagoblin/templates/mediagoblin/moderation/user.html:121
 msgid "Reported Comment"
-msgstr ""
+msgstr "Tilkynnt athugasemd"
 
 #: mediagoblin/templates/mediagoblin/moderation/user.html:123
 msgid "Reported Media Entry"
-msgstr ""
+msgstr "Tilkynnt margmiðlunarefni"
 
 #: mediagoblin/templates/mediagoblin/moderation/user.html:134
 #, python-format
 msgid "No active reports filed on %(username)s"
-msgstr ""
+msgstr "Engar virkar tilkynningar fyrir: %(username)s"
 
 #: mediagoblin/templates/mediagoblin/moderation/user.html:141
 #, python-format
 msgid "All reports on %(username)s"
-msgstr ""
+msgstr "Allar tilkynningar fyrir: %(username)s"
 
 #: mediagoblin/templates/mediagoblin/moderation/user.html:146
 #, python-format
 msgid "All reports that %(username)s has filed"
-msgstr ""
+msgstr "Allar tilkynningar sem %(username)s hefur sent inn"
 
 #: mediagoblin/templates/mediagoblin/moderation/user.html:160
 msgid "Ban User"
-msgstr ""
+msgstr "Banna notanda"
 
 #: mediagoblin/templates/mediagoblin/moderation/user.html:165
 msgid "UnBan User"
-msgstr ""
+msgstr "Afbanna notanda"
 
 #: mediagoblin/templates/mediagoblin/moderation/user.html:173
 msgid "Privilege"
-msgstr ""
+msgstr "Réttindi"
 
 #: mediagoblin/templates/mediagoblin/moderation/user.html:174
 msgid "User Has Privilege"
-msgstr ""
+msgstr "Notandinn hefur réttindi"
 
 #: mediagoblin/templates/mediagoblin/moderation/user.html:181
 msgid "Yes"
-msgstr ""
+msgstr "Já"
 
 #: mediagoblin/templates/mediagoblin/moderation/user.html:183
 msgid "No"
-msgstr ""
+msgstr "Nei"
 
 #: mediagoblin/templates/mediagoblin/moderation/user_panel.html:21
 #: mediagoblin/templates/mediagoblin/moderation/user_panel.html:26
 msgid "User panel"
-msgstr ""
+msgstr "Notendastýring"
 
 #: mediagoblin/templates/mediagoblin/moderation/user_panel.html:29
 msgid ""
 "\n"
 "    Here you can look up users in order to take punitive actions on them.\n"
 "  "
-msgstr ""
+msgstr "\n    Hér getur þú skoðað notendur til að gera refsigaðgerðir gagnvart þeim.\n  "
 
 #: mediagoblin/templates/mediagoblin/moderation/user_panel.html:34
 msgid "Active Users"
-msgstr ""
+msgstr "Virkir notendur"
 
 #: mediagoblin/templates/mediagoblin/moderation/user_panel.html:75
 msgid "ID"
-msgstr ""
+msgstr "Auðkenni"
 
 #: mediagoblin/templates/mediagoblin/moderation/user_panel.html:77
 msgid "When Joined"
-msgstr ""
+msgstr "Skráði sig"
 
 #: mediagoblin/templates/mediagoblin/moderation/user_panel.html:78
 msgid "# of Comments Posted"
-msgstr ""
+msgstr "Fjöldi athugasemda"
 
 #: mediagoblin/templates/mediagoblin/moderation/user_panel.html:95
 msgid "No users found."
-msgstr ""
+msgstr "Engir notendur fundust."
 
 #: mediagoblin/templates/mediagoblin/submit/collection.html:26
 msgid "Add a collection"
 msgstr "Búa til albúm"
-
-#: mediagoblin/templates/mediagoblin/submit/start.html:28
-#: mediagoblin/templates/mediagoblin/submit/start.html:35
-msgid "Add your media"
-msgstr "Sendu inn efni"
 
 #: mediagoblin/templates/mediagoblin/user_pages/collection.html:30
 #, python-format
@@ -1645,15 +1672,15 @@ msgstr "Síðustu 10 árangursíku innsendingarnar þínar"
 
 #: mediagoblin/templates/mediagoblin/user_pages/report.html:21
 msgid "<h2>File a Report</h2>"
-msgstr ""
+msgstr "<h2>Senda inn tilkynningu</h2>"
 
 #: mediagoblin/templates/mediagoblin/user_pages/report.html:24
 msgid "Reporting this Comment"
-msgstr ""
+msgstr "Tilkynni þessa athugasemd"
 
 #: mediagoblin/templates/mediagoblin/user_pages/report.html:60
 msgid "Reporting this Media Entry"
-msgstr ""
+msgstr "Tilkynni þetta margmiðlunarefni"
 
 #: mediagoblin/templates/mediagoblin/user_pages/report.html:72
 #, python-format
@@ -1662,11 +1689,11 @@ msgid ""
 "            ❖ Published by <a href=\"%(user_url)s\"\n"
 "                          class=\"comment_authorlink\">%(username)s</a>\n"
 "      "
-msgstr ""
+msgstr "\n            ❖ Höfundur: <a href=\"%(user_url)s\"\n                          class=\"comment_authorlink\">%(username)s</a>\n      "
 
 #: mediagoblin/templates/mediagoblin/user_pages/report.html:81
 msgid "File Report "
-msgstr ""
+msgstr "Tilkynna"
 
 #: mediagoblin/templates/mediagoblin/user_pages/user.html:52
 msgid "Here's a spot to tell others about yourself."
@@ -1719,11 +1746,6 @@ msgid ""
 "href=\"%(login_url)s\">log in</a> and resend it."
 msgstr "Ef þú ert þessi aðili en hefur týnt staðfestingarpóstinum getur þú <a href=\"%(login_url)s\">skráð þig inn</a> og endursent hann"
 
-#: mediagoblin/templates/mediagoblin/user_pages/user_nonactive.html:78
-#, python-format
-msgid "%(username)s"
-msgstr ""
-
 #: mediagoblin/templates/mediagoblin/utils/collection_gallery.html:49
 msgid "(remove)"
 msgstr "(fjarlægja)"
@@ -1774,7 +1796,7 @@ msgstr "eldri"
 
 #: mediagoblin/templates/mediagoblin/utils/report.html:25
 msgid "Report media"
-msgstr ""
+msgstr "Tilkynna efni"
 
 #: mediagoblin/templates/mediagoblin/utils/tags.html:20
 msgid "Tagged with"
@@ -1881,7 +1903,7 @@ msgstr "Þú getur notað\n                      <a href=\"http://daringfireball
 
 #: mediagoblin/user_pages/forms.py:55 mediagoblin/user_pages/forms.py:61
 msgid "Reason for Reporting"
-msgstr ""
+msgstr "Ástæður fyrir tilkynningu"
 
 #: mediagoblin/user_pages/views.py:178
 msgid "Sorry, comments are disabled."
@@ -1925,31 +1947,31 @@ msgstr "Efninu var ekki eytt þar sem þú merktir ekki við að þú værir vis
 msgid "You are about to delete another user's media. Proceed with caution."
 msgstr "Þú ert í þann mund að fara að eyða efni frá öðrum notanda. Farðu mjög varlega."
 
-#: mediagoblin/user_pages/views.py:400
+#: mediagoblin/user_pages/views.py:399
 msgid "You deleted the item from the collection."
 msgstr "Þú tókst þetta efni úr albúminu."
 
-#: mediagoblin/user_pages/views.py:404
+#: mediagoblin/user_pages/views.py:403
 msgid "The item was not removed because you didn't check that you were sure."
 msgstr "Þetta efni var ekki fjarlægt af því að þú merktir ekki við að þú værir viss."
 
-#: mediagoblin/user_pages/views.py:412
+#: mediagoblin/user_pages/views.py:411
 msgid ""
 "You are about to delete an item from another user's collection. Proceed with"
 " caution."
 msgstr "Þú ert í þann mund að fara að eyða efni úr albúmi annars notanda. Farðu mjög varlega."
 
-#: mediagoblin/user_pages/views.py:445
+#: mediagoblin/user_pages/views.py:443
 #, python-format
 msgid "You deleted the collection \"%s\""
 msgstr "Þú eyddir albúminu \"%s\""
 
-#: mediagoblin/user_pages/views.py:452
+#: mediagoblin/user_pages/views.py:450
 msgid ""
 "The collection was not deleted because you didn't check that you were sure."
 msgstr "Þessu albúmi var ekki eytt vegna þess að þu merktir ekki við að þú værir viss."
 
-#: mediagoblin/user_pages/views.py:460
+#: mediagoblin/user_pages/views.py:458
 msgid ""
 "You are about to delete another user's collection. Proceed with caution."
 msgstr "Þú ert í þann mund að fara að eyða albúmi annars notanda. Farðu mjög varlega."

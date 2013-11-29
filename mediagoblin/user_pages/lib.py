@@ -71,8 +71,6 @@ def add_media_to_collection(collection, media, note=None, commit=True):
 
     collection.items = collection.items + 1
     Session.add(collection)
-
-    media.collected = media.collected + 1
     Session.add(media)
 
     if commit:

@@ -25,7 +25,8 @@ from mediagoblin.tools.common import import_component
 
 _log = logging.getLogger(__name__)
 logging.basicConfig()
-_log.setLevel(logging.DEBUG)
+## Let's not set the level as debug by default to avoid confusing users :)
+# _log.setLevel(logging.DEBUG)
 
 def dbupdate_parse_setup(subparser):
     pass
@@ -92,14 +93,8 @@ forgotten to add it? ({1})'.format(plugin, exc))
         try:
             foundations = import_component('{0}.models:FOUNDATIONS'.format(plugin))
         except ImportError as exc:
-            _log.debug('No foundations found for {0}: {1}'.format(
-                plugin,
-                exc))
-
             foundations = {}
         except AttributeError as exc:
-            _log.debug('Could not find FOUNDATIONS in {0}.models, have you \
-forgotten to add it? ({1})'.format(plugin, exc))
             foundations = {}
 
         if models:
